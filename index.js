@@ -2,7 +2,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const urlAtlas = 'mongodb+srv://apiDevelop:0982@cluster0.yrdbq.gcp.mongodb.net/reservation?retryWrites=true&w=majority&useUnifiedTopology=true';
-const urlLocal = 'mongodb://localhost:27017/?useUnifiedTopology=true';
+const urlLocal = 'mongodb://127.0.0.1:2700/?useUnifiedTopology=true';
 // Database Name
 const dbName = 'reservation';
 
