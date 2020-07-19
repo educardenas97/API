@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var user = require('../controllers/userCtrl');
+var userCtrl = require('../controllers/userCtrl');
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
@@ -8,16 +8,16 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 // define the home page route
-router.get('/', function(req, res) {
+router.get('/', (req,res) => {
   res.send('User home page');
 });
 // define the about route
-router.get('/about', function(req, res) {
+router.get('/about', (res,req) => {
   res.send('About users');
 });
-
-router.post('/login',function(req,res,next){
-  user.login(req,res,next);
+// define login route
+router.post('/login', (req,res,next) => {
+  userCtrl.signUp(req,res,next);
 });
 
 module.exports = router;
