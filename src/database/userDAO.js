@@ -17,7 +17,7 @@ exports.insertOne = (doc) => {
         
         dbo.collection('reservations').insertOne(doc, (err,result) => {
             if (err) throw err;
-            console.log(result);
+            console.log(result.insertedCount);
             client.close();
         });
         
