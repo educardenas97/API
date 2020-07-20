@@ -1,7 +1,8 @@
+const { query } = require("express");
+
 let resCollection, reservation; 
 
-
-exports.injectDB = async function injectDB(conn) {
+exports.injectDB = async (conn) => {
     if (reservation) {
         return;
     }
@@ -13,28 +14,7 @@ exports.injectDB = async function injectDB(conn) {
         `Unable to establish a collection handle in moviesDAO: ${e}`
         );
     }
-}
-
-
-exports.findAll = async () => {
-    try {
-        let cursor = await reservation.find({});
-        return await cursor.toArray();
-    } catch (e) {
-        console.error(`Error occurred while find all reservations, ${e}.`);
-        return { error: e };
-    }
-}
-
-exports.deleteAll = async () => {
-    try {
-        let cursor = await reservation.deleteMany({});
-        return await cursor.result;
-    } catch (e) {
-        console.error(`Error occurred while delete all reservations, ${e}.`);
-        return { error: e };
-    }
-}
+};
 
 exports.insertOne = async (reservationInfo) => {
     try {
@@ -47,4 +27,37 @@ exports.insertOne = async (reservationInfo) => {
         console.error(`Error occurred while adding new reservation, ${e}.`);
         return { error: e };
     }
+};
+/*
+exports.findOne = async (reservationId) => {
+    try {
+        console.log(reservationId);
+        let query = {"reservationInfo.user": reservationId};
+        let result = await reservation.find({query});
+        return await result.toArray();
+    } catch (e) {
+        console.error(`Error occurred while find reservation, ${e}.`);
+        return { error: e };
+    }
 }
+*/
+
+exports.findAll = async () => {
+    try {
+        let cursor = await reservation.find({});
+        return await cursor.toArray();
+    } catch (e) {
+        console.error(`Error occurred while find all reservations, ${e}.`);
+        return { error: e };
+    }
+};
+
+exports.deleteAll = async () => {
+    try {
+        let cursor = await reservation.deleteMany({});
+        return await cursor.result;
+    } catch (e) {
+        console.error(`Error occurred while delete all reservations, ${e}.`);
+        return { error: e };
+    }
+};
