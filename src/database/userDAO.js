@@ -1,25 +1,27 @@
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-const dbName = 'reservations';
-let url = {
-    'docker':  'mongodb://127.0.0.1:2700/?useUnifiedTopology=true',
-    'local': 'mongodb://localhost:27000/?useUnifiedTopology=true',
-    'atlas': 'mongodb+srv://apiDevelop:0982@cluster0.yrdbq.gcp.mongodb.net/reservation?retryWrites=true&w=majority&useUnifiedTopology=true',
-};
+let users, reservations; //comment
+exports.injectDB = async function injectDB(conn) {
+    if (users) {
+        return;
+    }
+    try {
+        reservations = await conn.db('reservations');
+        users = await conn.db('reservations').collection("reservations");
+    } catch (e) {
+        console.error(
+        `Unable to establish a collection handle in moviesDAO: ${e}`
+        );
+    }
+}
 
-var client = new MongoClient(url.docker);
-// Use connect method to connect to the Server
-exports.insertOne = (doc) => {
-    client.connect((err) => {
-        assert.equal(null, err);
-        console.log(`Connected successfully to MongoDB `);
-        let dbo = client.db(dbName);
-        
-        dbo.collection('reservations').insertOne(doc, (err,result) => {
-            if (err) throw err;
-            console.log(result.insertedCount);
-            client.close();
-        });
-        
-    });
-};
+exports.insertOne = async function insertOne (userInfo) {
+    try {
+        await users.insertOne({ userInfo });
+        return true;
+    } catch (e) {
+        if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
+            return { error: "A user with the given email already exists." };
+        }
+        console.error(`Error occurred while adding new user, ${e}.`);
+        return { error: e };
+    }
+}
