@@ -39,6 +39,18 @@ exports.findOne = async (reservationId) => {
     }
 }
 
+exports.find = async (query) => {
+    try {
+        console.log(query);
+        let cursor = await reservation.find(query);
+        return cursor.toArray();
+    } catch (e) {
+        console.error(`Error occurred while find reservation, ${e}.`);
+        return { error: e };
+    }
+}
+
+
 exports.findAll = async () => {
     try {
         let cursor = await reservation.find({});

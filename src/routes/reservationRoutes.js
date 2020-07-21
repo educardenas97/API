@@ -8,9 +8,8 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 
-// define the home page route
 router.get('/', (req,res) => {
-  reservationCtrl.getOneReservation(req,res);
+  reservationCtrl.getReservation(req,res);
 });
 
 // only dev routes
