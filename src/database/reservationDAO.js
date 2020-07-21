@@ -18,7 +18,7 @@ exports.injectDB = async (conn) => {
 
 exports.insertOne = async (reservationInfo) => {
     try {
-        let result = await reservation.insertOne({ reservationInfo });
+        let result = await reservation.insertOne({ ...reservationInfo });
         return result.insertedId;
     } catch (e) {
         if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
@@ -28,19 +28,16 @@ exports.insertOne = async (reservationInfo) => {
         return { error: e };
     }
 };
-/*
+
 exports.findOne = async (reservationId) => {
     try {
         console.log(reservationId);
-        let query = {"reservationInfo.user": reservationId};
-        let result = await reservation.find({query});
-        return await result.toArray();
+        return await reservation.findOne(reservationId);
     } catch (e) {
         console.error(`Error occurred while find reservation, ${e}.`);
         return { error: e };
     }
 }
-*/
 
 exports.findAll = async () => {
     try {

@@ -13,5 +13,5 @@ exports.deleteAllReservation = async (req,res) => {
 }
 
 exports.getOneReservation = async (req,res) => {
-    res.send( await reservationDAO.findOne(req.body._id) );
+    res.json( await reservationDAO.findOne(req.body) );
 }
