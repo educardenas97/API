@@ -50,7 +50,18 @@ exports.find = async (query) => {
     }
 }
 
+exports.deleteOne = async (reservationId) => {
+    try {
+        console.log(reservationId);
+        let cursor = await reservation.deleteOne(reservationId);
+        return await cursor.result;
+    } catch (e) {
+        console.error(`Error occurred while delete all reservations, ${e}.`);
+        return { error: e };
+    }
+};
 
+//Only dev functions
 exports.findAll = async () => {
     try {
         let cursor = await reservation.find({});
