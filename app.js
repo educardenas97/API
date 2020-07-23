@@ -11,7 +11,6 @@ let user = require('./src/routes/userRoutes');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-// Cargamos las rutas
 app.use('/reservation', reservation);
 app.use('/user',user);
 
