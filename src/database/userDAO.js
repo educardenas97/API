@@ -16,8 +16,8 @@ exports.injectDB = async (conn) => {
 
 exports.insertOne = async (userData) => {
     try {
-        let cursor = await user.insertOne(userData);
-        return await cursor.insertedId;
+        let cursor = await user.insertOne({...userData});
+        return cursor.insertedId;
     } catch (e) {
         if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
             return { error: "A user already exists." };
