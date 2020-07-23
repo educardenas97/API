@@ -14,10 +14,10 @@ exports.setOneUser = async (req) => {
     return( await userDAO.insertOne(userDoc) );
 }
 
-exports.findOneUser = async (req) => {
-    return await userDAO.findOne();
-}
+exports.findUsers = async (req) => {
+    return await userDAO.find(req.body.career);
+};
 
-exports.deleteAllUsers = async(req) => {
-    return( await userDAO.deleteAll());
-}
+exports.findOneUser = async (req) => await userDAO.findOne(req.body.email);
+
+exports.deleteAllUsers = async(req) => await userDAO.deleteAll();

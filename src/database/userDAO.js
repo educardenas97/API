@@ -15,14 +15,23 @@ exports.injectDB = async (conn) => {
 };
 
 
-exports.findOne = async () => {
+exports.findOne = async (email) => {
     try {
-        let cursor = await user.findOne({});
+        let cursor = await user.findOne({email: email});
         return cursor;
     } catch (e) {
         console.error(`Error occurred find a random user, ${e}.`);
         return { error: e };
-        
+    }
+}
+
+exports.find = async (career) => {
+    try {
+        let cursor = await user.find({career: career},{_id: 0});
+        return await cursor.toArray();
+    } catch (e) {
+        console.error(`Error occurred find user, ${e}.`);
+        return { error: e };  
     }
 }
 
