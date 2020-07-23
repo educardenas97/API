@@ -1,5 +1,3 @@
-const { query } = require("express");
-
 let resCollection, reservation; 
 
 exports.injectDB = async (conn) => {
