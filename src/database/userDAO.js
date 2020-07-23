@@ -16,7 +16,7 @@ exports.injectDB = async (conn) => {
 
 exports.insertOne = async (userData) => {
     try {
-        let cursor = await user.insertOne({...userData});
+        let cursor = await user.insertOne({...userData},{ w : "majority"});
         return cursor.insertedId;
     } catch (e) {
         if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
@@ -30,7 +30,7 @@ exports.insertOne = async (userData) => {
 
 exports.deleteAll = async () => {
     try {
-        let cursor = await user.deleteMany({});
+        let cursor = await user.deleteMany({}, { w : "majority"});
         return cursor.result;
     } catch (e) {
         console.error(`Error occurred while delete all users, ${e}.`);

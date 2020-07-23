@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var userCtrl = require('../controllers/userCtrl');
-const { route } = require('./reservationRoutes');
 
 router.use( (req, res, next) => {
     console.log(req.body);

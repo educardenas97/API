@@ -1,7 +1,17 @@
 const userDAO = require('../database/userDAO');
 
 exports.setOneUser = async (req) => {
-    return( await userDAO.insertOne(req.body) );
+    let registrationDate = Date.now();
+    const userDoc = {
+        'firstName':req.body.firstName,
+        'lastName':req.body.lastName,
+        'pass':req.body.pass,
+        'email':req.body.email,
+        'career':req.body.career,
+        'phoneNumber':req.body.phoneNumber,
+        'registrationDate': registrationDate
+    };
+    return( await userDAO.insertOne(userDoc) );
 }
 
 exports.deleteAllUsers = async(req) => {
