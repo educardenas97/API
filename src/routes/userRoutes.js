@@ -3,7 +3,7 @@ var router = express.Router();
 var userCtrl = require('../controllers/userCtrl');
 
 router.use( (req, res, next) => {
-    console.log(req.body);
+    console.log(`req method: ${req.method}`);
     next();
 });
 
@@ -12,7 +12,7 @@ router.post('/', async (req,res) => {
 });
 
 router.get('/', async (req,res) => {
-    res.json(await userCtrl.setOneUser(req));
+    res.json(await userCtrl.findOneUser(req));
 });
 
 

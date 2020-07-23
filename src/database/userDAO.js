@@ -14,6 +14,18 @@ exports.injectDB = async (conn) => {
     }
 };
 
+
+exports.findOne = async () => {
+    try {
+        let cursor = await user.findOne({});
+        return cursor;
+    } catch (e) {
+        console.error(`Error occurred find a random user, ${e}.`);
+        return { error: e };
+        
+    }
+}
+
 exports.insertOne = async (userData) => {
     try {
         let cursor = await user.insertOne({...userData},{ w : "majority"});
