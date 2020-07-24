@@ -16,20 +16,19 @@ exports.setOneUser = async (req) => {
 }
 
 exports.updateOneUser = async (req) => {
-    
+    return req.body.userId ? 
+        await userDAO.updateOne(req.body.userId,req.body) : 
+        'no userId in argument';
 }
 
 exports.deleteOneUser = async (req) => {
     return req.body.userId ? 
         await userDAO.deleteOne(req.body.userId) :
         ('no userId in argument');
-}
+};
 
-exports.findOneUser = async (req) => await userDAO.findOne(req.body.email);
-
-
-exports.findUsers = async (req) => {
-    return await userDAO.find(req.body.career);
+exports.findUser = async (req) => {
+    return await userDAO.find(req.body.userId);
 };
 
 exports.deleteAllUsers = async(req) => await userDAO.deleteAll();

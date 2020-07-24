@@ -7,12 +7,11 @@ router.use( (req, res, next) => {
     next();
 });
 
-router.get('/', async (req,res) => res.json( await userCtrl.findOneUser(req)) );
+router.get('/', async (req,res) => res.json( await userCtrl.findUser(req)) );
 router.put('/', async (req,res) => res.json( await userCtrl.updateOneUser(req)) );
 router.post('/', async (req,res) => res.send( await userCtrl.setOneUser(req)) );
 router.delete('/', async (req,res) => res.send( await userCtrl.deleteOneUser(req)) );
 
-router.get('/career', async (req,res) => res.json( await userCtrl.findUsers(req)) );
 
 
 //Only dev functions

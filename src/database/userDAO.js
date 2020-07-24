@@ -14,21 +14,10 @@ exports.injectDB = async (conn) => {
     }
 };
 
-
-exports.findOne = async (email) => {
-    try {
-        let cursor = await user.find({ email: email}).project({ _id: 0, registrationDate: 0 });
-        return await cursor.toArray();
-    } catch (e) {
-        console.error(`Error occurred find a random user, ${e}.`);
-        return { error: e };
-    }
-}
-
-exports.find = async (career) => {
+exports.find = async (userId) => {
     try {
         let cursor = await user
-            .find({career: career})
+            .find({userId: userId})
             .sort({registrationDate: 1})
             .project({ _id: 0, registrationDate: 0 });
         
@@ -37,7 +26,7 @@ exports.find = async (career) => {
         console.error(`Error occurred find user, ${e}.`);
         return { error: e };  
     }
-}
+};
 
 exports.insertOne = async (userData) => {
     try {
@@ -51,7 +40,18 @@ exports.insertOne = async (userData) => {
         return { error: e };
         
     }
-}
+};
+
+exports.updateOne = async (userId,body) => {
+    try {
+        const newValues = {$set: {...body}};
+        let cursor = await user.updateOne({userId: userId},newValues);
+        return cursor.result;
+    } catch (e) {
+        console.error(`Error occurred while update user, ${e}.`);
+        return { error: e }; 
+    }
+};
 
 exports.deleteOne = async (userId) => {
     try {
@@ -61,7 +61,7 @@ exports.deleteOne = async (userId) => {
         console.error(`Error occurred while delete user, ${e}.`);
         return { error: e };       
     }
-}
+};
 
 //Only dev function
 exports.deleteAll = async () => {
