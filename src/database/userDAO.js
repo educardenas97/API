@@ -44,14 +44,39 @@ exports.insertOne = async (userData) => {
 
 exports.updateOne = async (userId,body) => {
     try {
-        const newValues = {$set: {...body}};
-        let cursor = await user.updateOne({userId: userId},newValues);
-        return cursor.result;
+        const newValues = { $set:  { ...body } };
+        let cursor = await user.updateOne({ userId: userId }, newValues);
+        return cursor.result;        
     } catch (e) {
         console.error(`Error occurred while update user, ${e}.`);
         return { error: e }; 
     }
+}
+
+
+exports.updatePersonalData = async (userId,body) => {
+    try {
+        const newValues = {$set: {"personalData": {...body}}};
+        let cursor = await user.updateOne({userId: userId},newValues);
+        return cursor.result;
+    } catch (e) {
+        console.error(`Error occurred while update user.personalData, ${e}.`);
+        return { error: e }; 
+    }
 };
+
+exports.updateAcademicData = async (userId,body) => {
+    try {
+        const newValues = {$set: {"academicData": {...body}}};
+        let cursor = await user.updateOne({userId: userId},newValues);
+        return cursor.result;
+    } catch (e) {
+        console.error(`Error occurred while update user.academicData, ${e}.`);
+        return { error: e }; 
+    }
+};
+
+
 
 exports.deleteOne = async (userId) => {
     try {
