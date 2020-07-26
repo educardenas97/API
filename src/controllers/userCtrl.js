@@ -57,6 +57,18 @@ exports.deleteOneUser = async (req) => {
         ('no userId in argument');
 };
 
+exports.deletePersonalData = async (req) => {
+    return req.body.userId ?
+        await userDAO.deletePersonalData(req.body.userId) :
+        ('no userId in argument');
+};
+
+exports.deleteAcademicData = async (req) => {
+    return req.body.userId ?
+        await userDAO.deleteAcademicData(req.body.userId) :
+        ('no userId in argument');
+};
+
 exports.findUser = async (req) => {
     return await userDAO.find(req.body.userId);
 };

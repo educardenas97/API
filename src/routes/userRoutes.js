@@ -13,7 +13,10 @@ router.post('/', async (req,res) => res.send( await userCtrl.setOneUser(req)) );
 router.delete('/', async (req,res) => res.send( await userCtrl.deleteOneUser(req)) );
 
 router.patch('/personal', async (req,res) => res.json( await userCtrl.updatePersonalData(req)) );
-router.patch('/academic', async (req, res) => res.json(await userCtrl.updateAcademicData(req)));
+router.delete('/personal', async (req,res) => res.json( await userCtrl.deletePersonalData(req)) );
+
+router.patch('/academic', async (req, res) => res.json(await userCtrl.updateAcademicData(req)) );
+router.delete('/academic', async (req, res) => res.json(await userCtrl.deleteAcademicData(req)) );
 
 //Only dev functions
 router.delete('/all', async (req,res) => res.send( await userCtrl.deleteAllUsers(req)) );

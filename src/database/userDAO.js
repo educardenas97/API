@@ -31,7 +31,7 @@ exports.find = async (userId) => {
 exports.insertOne = async (userData) => {
     try {
         let cursor = await user.insertOne({...userData},{ w : "majority"});
-        return userData.email;
+        return cursor.result;
     } catch (e) {
         if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
             return { error: "A user already exists." };
@@ -76,8 +76,6 @@ exports.updateAcademicData = async (userId,body) => {
     }
 };
 
-
-
 exports.deleteOne = async (userId) => {
     try {
         let cursor = await user.deleteOne({userId: userId},{ w: 'majority'});
@@ -87,6 +85,29 @@ exports.deleteOne = async (userId) => {
         return { error: e };       
     }
 };
+
+exports.deleteAcademicData = async (userId) => {
+    try {
+        const deleteField = {$unset: { "academicData": ""}};
+        let cursor = await user.updateOne({userId: userId}, deleteField);
+        return cursor.result;
+    } catch (e) {
+        console.error(`Error occurred while delete user, ${e}.`);
+        return { error: e }; 
+    }
+}
+
+exports.deletePersonalData = async (userId) => {
+    try {
+        const deleteField = { $unset: { "personalData": "" } };
+        let cursor = await user.updateOne({ userId: userId }, deleteField);
+        return cursor.result;
+    } catch (e) {
+        console.error(`Error occurred while delete user, ${e}.`);
+        return { error: e };
+    }
+}
+
 
 //Only dev function
 exports.deleteAll = async () => {
