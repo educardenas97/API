@@ -12,6 +12,15 @@ router.get('/', (req,res) => {
   reservationCtrl.getReservation(req,res);
 });
 
+router.post('/', (req,res,next) => {
+  reservationCtrl.setReservation(req,res,next);
+});
+
+router.delete('/',(req,res) => {
+  reservationCtrl.deleteOneReservation(req,res);
+});
+
+
 // only dev routes
 router.get('/all', (req,res) => {
   reservationCtrl.getAllReservation(req,res);
@@ -21,10 +30,6 @@ router.delete('/all',(req,res) => {
   reservationCtrl.deleteAllReservation(req,res);
 });
 
-// define post route
-router.post('/', (req,res,next) => {
-  reservationCtrl.setReservation(req,res,next);
-});
 
 
 module.exports = router;

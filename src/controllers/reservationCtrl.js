@@ -12,6 +12,10 @@ exports.getOneReservation = async (req,res) => {
     res.json( await reservationDAO.findOne(req.body) );
 }
 
+exports.deleteOneReservation = async (req,res) => {
+    res.send( await reservationDAO.deleteOne(req.body) );
+}
+
 //Only dev functions
 exports.getAllReservation = async (req,res) => {
     res.json( await reservationDAO.findAll() );
