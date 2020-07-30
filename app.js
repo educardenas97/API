@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 app.use('/reservation', reservation);
 app.use('/user',user);
+app.use('/product', product);
 
 
 module.exports = app;

@@ -21,6 +21,7 @@ mongoClient.connect()
     .then(async client => {
       await userDAO.injectDB(client);
       await reservationDAO.injectDB(client);
+      await productDAO.injectDB(client);
       app.listen(port, () => {
         console.log(`listening on port ${port}`);
       });

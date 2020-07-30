@@ -12,7 +12,7 @@ exports.injectDB = async (conn) => {
         `Unable to establish a collection handle in userDAO: ${e}`
         );
     }
-};
+}; 
 
 exports.find = async (userId) => {
     try {
