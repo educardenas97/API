@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
-let userDAO = require('../database/userDAO');
-let productDAO = require('../database/productDAO');
+let userDAO = require('../api/database/userDAO');
+let productDAO = require('../api/database/productDAO');
 let app = require('./app');
 let port = 3000;
 

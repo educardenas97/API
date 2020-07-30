@@ -2,7 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "description": "api for reservation system",
-  "main": "../API/src/server/index.js",
+  "main": "../API/server/index.js",
   "scripts": {
     "start": "nodemon index.js"
   },
