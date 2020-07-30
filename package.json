@@ -2,10 +2,9 @@
   "name": "api",
   "version": "1.0.0",
   "description": "api for reservation system",
-  "main": "index.js",
+  "main": "../API/src/server/index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "author": "Eduardo Gomez",
   "license": "MIT",
