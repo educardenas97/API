@@ -36,3 +36,24 @@ exports.findProduct = async (squema) => {
         return { error: e };
     }
 };
+
+exports.updateFeatures = async (productId,productFeatures) => {
+    try {
+        const newValues = { $set: {"features": {...productFeatures}} };
+        let cursor = await product.updateOne({"productCode": productId}, newValues, {upsert:true} );
+        return cursor.result;
+    } catch (e) {
+        console.error(`Error occurred while update product.features, ${e}.`);
+        return { error: e }; 
+    }
+};
+
+exports.deleteProduct = async (productId) => {
+    try {
+        let cursor = await product.deleteOne({"productCode":productId});
+        return cursor.result;
+    } catch (e) {
+        console.error(`Error occurred while update product.academicData, ${e}.`);
+        return { error: e }; 
+    }
+};

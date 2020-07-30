@@ -51,7 +51,7 @@ exports.updateOne = async (userId,body) => {
         console.error(`Error occurred while update user, ${e}.`);
         return { error: e }; 
     }
-}
+};
 
 
 exports.updatePersonalData = async (userId,body) => {
@@ -95,7 +95,7 @@ exports.deleteAcademicData = async (userId) => {
         console.error(`Error occurred while delete user, ${e}.`);
         return { error: e }; 
     }
-}
+};
 
 exports.deletePersonalData = async (userId) => {
     try {
@@ -118,4 +118,4 @@ exports.deleteAll = async () => {
         console.error(`Error occurred while delete all users, ${e}.`);
         return { error: e };       
     }
-}
+};
