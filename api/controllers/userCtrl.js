@@ -1,6 +1,6 @@
 const userDAO = require('../database/userDAO');
 
-exports.setOneUser = async (req) => {
+exports.setOneUser = async (req) => { 
     let registrationDate = Date.now();
     const userDoc = {
         'userId':req.body.email,
@@ -40,7 +40,7 @@ exports.updatePersonalData = async (req) => {
         'no userId in argument';
 };
 
-exports.updateAcademicData = async (req) =>{
+exports.updateAcademicData = async (req) => {
     const academicData = {
         'role': req.body.role,
         'career': req.body.career

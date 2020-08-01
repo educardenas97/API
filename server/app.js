@@ -3,16 +3,14 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let app = express();
 
-let reservation = require('./src/routes/reservationRoutes'); 
-let user = require('./src/routes/userRoutes');
-
-//Configuramos bodyParser para que convierta el body de nuestras peticiones a JSON
+let user = require('../api/routes/user.routes');
+let product = require('../api/routes/product.routes');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-app.use('/reservation', reservation);
 app.use('/user',user);
+app.use('/product', product);
 
 
 module.exports = app;
