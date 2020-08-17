@@ -18,13 +18,13 @@ exports.setOneUser = async (req) => {
         },    
     };
     return( await userDAO.insertOne(userDoc) );
-};
+}
 
 exports.updateOneUser = async (req) => {
     return req.body.userId ? 
         await userDAO.updateOne(req.body.userId,req.body) : 
         'no userId in argument';
-};
+}
 
 
 exports.updatePersonalData = async (req) => {
@@ -38,7 +38,7 @@ exports.updatePersonalData = async (req) => {
     return req.body.userId ?
         await userDAO.updatePersonalData(req.body.userId, personalData) :
         'no userId in argument';
-};
+}
 
 exports.updateAcademicData = async (req) => {
     const academicData = {
@@ -48,29 +48,29 @@ exports.updateAcademicData = async (req) => {
     return req.body.userId ?
         await userDAO.updateAcademicData(req.body.userId,academicData) :
         'no userId in argument';
-};
+}
 
 
 exports.deleteOneUser = async (req) => {
     return req.body.userId ? 
         await userDAO.deleteOne(req.body.userId) :
         ('no userId in argument');
-};
+}
 
 exports.deletePersonalData = async (req) => {
     return req.body.userId ?
         await userDAO.deletePersonalData(req.body.userId) :
         ('no userId in argument');
-};
+}
 
 exports.deleteAcademicData = async (req) => {
     return req.body.userId ?
         await userDAO.deleteAcademicData(req.body.userId) :
         ('no userId in argument');
-};
+}
 
 exports.findUser = async (req) => {
     return await userDAO.find(req.body.userId);
-};
+}
 
 exports.deleteAllUsers = async(req) => await userDAO.deleteAll();

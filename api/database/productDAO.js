@@ -12,7 +12,7 @@ exports.injectDB = async (conn) => {
             `Unable to establish a collection handle in productDAO: ${e}`
         );
     }
-};
+}
 
 exports.insertOne = async (squema) => {
     try {
@@ -25,7 +25,7 @@ exports.insertOne = async (squema) => {
         console.error(`Error occurred while adding new user, ${e}.`);
         return { error: e };
     }
-};
+}
 
 exports.findProduct = async (squema) => {
     try {
@@ -35,7 +35,7 @@ exports.findProduct = async (squema) => {
         console.error(`Error occurred while find one user, ${e}.`);
         return { error: e };
     }
-};
+}
 
 exports.updateFeatures = async (productId,productFeatures) => {
     try {
@@ -46,7 +46,7 @@ exports.updateFeatures = async (productId,productFeatures) => {
         console.error(`Error occurred while update product.features, ${e}.`);
         return { error: e }; 
     }
-};
+}
 
 exports.deleteProduct = async (productId) => {
     try {
@@ -56,4 +56,4 @@ exports.deleteProduct = async (productId) => {
         console.error(`Error occurred while update product.academicData, ${e}.`);
         return { error: e }; 
     }
-};
+}
