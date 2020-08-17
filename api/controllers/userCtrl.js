@@ -1,4 +1,5 @@
 const userDAO = require('../database/userDAO');
+const userValidator = require('../validators/user.validator');
 
 exports.setOneUser = async (req) => { 
     let registrationDate = Date.now();
@@ -17,6 +18,7 @@ exports.setOneUser = async (req) => {
             'career': req.body.career,
         },    
     };
+    userValidator.schema(userDoc);
     return( await userDAO.insertOne(userDoc) );
 }
 

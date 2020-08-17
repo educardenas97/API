@@ -1,8 +1,7 @@
-const { check, validationResult } = require('express-validator');
+const validator = require('validator');
 
-exports.validateUserData = async (req,res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() })
-    }
+exports.schema = (data) => {
+    data.personalData.email.map( (email) => {
+        console.log( validator.isEmail(email) );
+    });   
 }
